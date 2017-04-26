@@ -1,10 +1,11 @@
 package solitare;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Solitare
 {
-	ArrayList<Card> deck = new ArrayList<Card>();
+	private ArrayList<Card> deck = new ArrayList<Card>();
 
 	public Solitare()
 	{
@@ -18,11 +19,25 @@ public class Solitare
 				deck.add(new Card(i, j));
 			}
 		}
-		 printDeck();
+		printDeck();
 		// randomize deck
+		shuffle();
 		// load board
 		// gameloop
 		// check win conditions in game loop
+	}
+
+	private void shuffle()
+	{
+		Random r = new Random();
+		for (int i = 0; i < deck.size(); i++)
+		{
+			int swapLocation = r.nextInt(52);
+			Card a = deck.get(i);
+			Card b = deck.get(swapLocation);
+			deck.set(i, b);
+			deck.set(swapLocation, a);
+		}
 	}
 
 	private void printDeck()
